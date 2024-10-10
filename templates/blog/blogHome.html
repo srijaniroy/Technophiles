@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %} BlogHome {% endblock title %}
+
+{% block js %}
+<script>
+let previews = document.getElementsByClassName('preview');
+Array.from(previews).forEach((element) => {
+    element.innerHTML = element.innerText;
+});
+</script>
+{% endblock js %}
+
+{% block blogactive %} active {% endblock blogactive %}
+
+{% block body %}
+<div class="container my-3">
+    <h2 style="text-align: center; background-color: #FFFFFF;
+    background-image: linear-gradient(to bottom right, #dff7ff, #97fd9f); padding: 10px;">Blogs by Technophiles</h2>
+    
+    <div class="row"> <!-- Start a row for all articles -->
+        {% for post in allPosts %}
+        <div class="col-md-12"> <!-- Make sure each post takes full width in the row -->
+            <div class="border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">Article by {{post.author}} ({{post.views}} views)</strong>
+                    <h3 class="mb-0"><a class="text-dark" href="/blog/{{post.slug}}">{{post.title}}</a></h3>
+                    <div class="mb-1 text-muted">{{post.datetime}}</div>
+                    <p class="card-text mb-auto">
+                        <div class="preview">{{post.content|safe| truncatechars:300}}</div>
+                    </p>
+                    <a href="/blog/{{post.slug}}" class="stretched-link">Continue reading</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div> <!-- End the row -->
+</div>
+{% endblock %}
