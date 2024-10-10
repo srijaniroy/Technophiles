@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,17 +7,45 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
+  <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}">
+
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
 
   <title>{% block title %} {% endblock title %} | Technophiles</title>
+  <style>
+    body {
+      transition: background-color 0.3s;
+      /* Smooth transition */
+    }
+
+    body.light-mode {
+      background-color: white;
+      color: black;
+    }
+
+    body.dark-mode {
+      background-color: #121212;
+      color: rgb(35, 147, 22);
+    }
+
+    body.dark-mode h2,
+    body.dark-mode h3 a {
+      color: rgb(243, 85, 172);
+    }
+
+    body.dark-mode h1 {
+      color: black;
+    }
+  </style>
 </head>
 
 <body>
-  
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">Technophiles</a>
+    <a class="navbar-brand" href="/"> <img src="{% static 'img/logo.png' %}" alt="Logo"
+        style="height: 30px; margin-right: 8px;">Technophiles</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -65,6 +94,14 @@
     </button>
     {% endif %}
     </div>
+    <button id="mode-toggle" class="btn btn-outline-light ml-2" title="Toggle Dark/Light Mode">
+      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="text-purple-700"
+        height="28" width="28" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z">
+        </path>
+      </svg>
+    </button>
   </nav>
   {% for message in messages %}
   <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
@@ -179,6 +216,34 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggleButton = document.getElementById('mode-toggle');
+      const body = document.body;
+
+
+      const currentMode = localStorage.getItem('mode') || 'light';
+      body.classList.add(`${currentMode}-mode`);
+      updateButtonIcon(currentMode);
+
+      toggleButton.addEventListener('click', () => {
+
+        body.classList.toggle('dark-mode');
+        body.classList.toggle('light-mode');
+
+        // Save the current mode in localStorage
+        const newMode = body.classList.contains('dark-mode') ? 'dark' : 'light';
+        localStorage.setItem('mode', newMode);
+        updateButtonIcon(newMode);
+
+      });
+
+      function updateButtonIcon(mode) {
+        toggleButton.querySelector('svg').classList.toggle('text-purple-700', mode === 'light');
+        toggleButton.querySelector('svg').classList.toggle('text-white', mode === 'dark');
+      }
+    });
+  </script>
 </body>
 
 </html>
