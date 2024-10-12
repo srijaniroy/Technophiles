@@ -6,16 +6,20 @@
 {% load extras %}
 <div class="container my-3">
   <div class="blog-post">
-    <h2 class="blog-post-title" style="
+    <div class="blog-post-header" style="
         background-color: #ffffff;
         background-image: linear-gradient(to bottom right, #dff7ff, #97fd9f);
-        padding-left: 10px;
+        padding: 10px;
         margin-left: -10px;
-      ">
-      {{post.title}}
-    </h2>
-
-    <p class="blog-post-meta">{{post.timeStamp}} by {{post.author}} (<span > {{post.views}} views</span>)</p>
+        margin-right: -10px;
+    ">
+        <h2 class="blog-post-title">
+            {{post.title}}
+        </h2>
+        <p class="blog-post-meta">{{post.timeStamp}} by {{post.author}} 
+            (<span>{{post.views}} views</span>)
+        </p>
+    </div>
 
     <p>{{post.content|safe}}</p>
     <hr />

@@ -6,7 +6,8 @@
 
 <div class="container my-3">
     <div class="jumbotron" style="background-image: linear-gradient(to bottom right, #aee3f5, #bef8c3)">
-        <h1 class="display-4 text-center" style="font-weight: bold; letter-spacing: 2px; font-size: 3em;">Welcome to Technophiles</h1>
+        <h1 class="display-4 text-center" style="font-weight: bold; letter-spacing: 2px; font-size: 3em;">Welcome to
+            Technophiles</h1>
 
         <p class="lead text-center">This is your go-to blog for all things tech and innovation!</p>
         <hr class="my-4">
@@ -18,16 +19,18 @@
 </div>
 
 <div class="container">
-    <h2>Popular Posts</h2> 
+    <h2>Popular Posts</h2>
     {% for article in top_articles %}
-    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+    <div
+        class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-primary">Article by {{ article.author }} ({{ article.views }} views)</strong>
+            <strong class="d-inline-block mb-2 text-primary">Article by {{ article.author }} ({{ article.views }}
+                views)</strong>
             <h3 class="mb-0">
-                <a href="/blog/{{ article.slug }}">{{ article.title }}</a> 
+                <a href="/blog/{{ article.slug }}">{{ article.title }}</a>
             </h3>
             <div class="mb-1 text-muted">{{ article.datetime }}</div>
-            <p class="card-text">{{ article.content|truncatewords:30 }}</p>
+            <p class="card-text">{{ article.content|striptags|truncatewords:30 }}</p>
             <a href="/blog/{{ article.slug }}" class="stretched-link">Continue reading</a>
         </div>
     </div>

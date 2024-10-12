@@ -4,10 +4,10 @@
 
 {% block js %}
 <script>
-let previews = document.getElementsByClassName('preview');
-Array.from(previews).forEach((element) => {
-    element.innerHTML = element.innerText;
-});
+    let previews = document.getElementsByClassName('preview');
+    Array.from(previews).forEach((element) => {
+        element.innerHTML = element.innerText;
+    });
 </script>
 {% endblock js %}
 
@@ -17,23 +17,25 @@ Array.from(previews).forEach((element) => {
 <div class="container my-3">
     <h2 style="text-align: center; background-color: #FFFFFF;
     background-image: linear-gradient(to bottom right, #dff7ff, #97fd9f); padding: 10px;">Blogs by Technophiles</h2>
-    
-    <div class="row"> <!-- Start a row for all articles -->
+
+    <div class="posts my-2"> <!-- Post section -->
         {% for post in allPosts %}
-        <div class="col-md-12"> <!-- Make sure each post takes full width in the row -->
-            <div class="border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">Article by {{post.author}} ({{post.views}} views)</strong>
-                    <h3 class="mb-0"><a class="text-dark" href="/blog/{{post.slug}}">{{post.title}}</a></h3>
-                    <div class="mb-1 text-muted">{{post.datetime}}</div>
-                    <p class="card-text mb-auto">
-                        <div class="preview">{{post.content|safe| truncatechars:300}}</div>
-                    </p>
-                    <a href="/blog/{{post.slug}}" class="stretched-link">Continue reading</a>
+        <div class="row my-2"> <!-- Row for each article -->
+            <div class="col-md-12"> <!-- Full width for each article -->
+                <div class="border rounded mb-4 shadow-sm" style="padding: 20px;"> <!-- Added padding for uniformity -->
+                    <div class="d-flex flex-column"> <!-- Keep padding consistent -->
+                        <strong class="d-inline-block mb-2 text-primary">Article by {{post.author}} ({{post.views}} views)</strong>
+                        <h3 class="mb-0"><a href="/blog/{{post.slug}}">{{post.title}}</a></h3>
+                        <div class="mb-1 text-muted">{{post.datetime}}</div>
+                        <p class="card-text mb-auto">
+                            <div class="preview">{{post.content|safe|truncatechars:300}}</div>
+                        </p>
+                        <a href="/blog/{{post.slug}}" class="stretched-link">Continue reading</a>
+                    </div>
                 </div>
             </div>
         </div>
         {% endfor %}
-    </div> <!-- End the row -->
+    </div>
 </div>
 {% endblock %}
