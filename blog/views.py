@@ -6,7 +6,7 @@ from blog.templatetags import extras
 
 # Create your views here.
 def blogHome(request): 
-    allPosts = Post.objects.all()
+    allPosts = Post.objects.all().order_by('-views')
     context = {'allPosts' : allPosts}
     return render(request, 'blog/blogHome.html', context)
 
