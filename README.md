@@ -20,7 +20,7 @@ Welcome to the Technophiles Blog! This is a Django-based blogging platform desig
 
 1. **Clone the Repository**:
     ```bash
-    git clone https://github.com/srijaniroy/Technophiles.git
+    git clone [https://github.com/srijaniroy/Technophiles.git](https://github.com/srijaniroy/Technophiles.git)
     cd Technophiles
     ```
 
