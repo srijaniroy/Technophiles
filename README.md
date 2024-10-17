@@ -2,6 +2,7 @@
 
 Welcome to the Technophiles Blog! This is a Django-based blogging platform designed for tech enthusiasts to explore the latest blogs on technology.
 
+
 ## Features
 
 - **User Authentication**: Users can sign up and log in to their accounts.
@@ -13,6 +14,7 @@ Welcome to the Technophiles Blog! This is a Django-based blogging platform desig
 - **Contact Us**: A contact form for users to reach out to the blog administrators for inquiries or feedback.
 - **Login/Signup**: User authentication system with secure login and signup features.
 - **Post Blogs**: Publish blog posts at your convenience (optional for admin users).
+
   
 ## Installation
 
@@ -47,6 +49,7 @@ Welcome to the Technophiles Blog! This is a Django-based blogging platform desig
 6. **Access the Blog**:
    Visit `http://127.0.0.1:8000/` in your web browser.
 
+
 ## Usage
 
 - **Homepage**: Displays a selection of popular blog posts.
@@ -55,6 +58,7 @@ Welcome to the Technophiles Blog! This is a Django-based blogging platform desig
 - **Dark Mode**: Toggle between light and dark modes by clicking the dark mode switch.
 - **Authentication**: Sign up to create an account or log in if you already have one.
 - **Contact Us**: Send messages to the blog administrators via the contact form.
+
 
 ## Technologies Used
 
